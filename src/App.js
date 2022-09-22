@@ -1,6 +1,7 @@
 
 import "./style.css"
 import "./reset.css"
+import palavras from "./palavras";
 
 export default function App() {
     const nomes = [
