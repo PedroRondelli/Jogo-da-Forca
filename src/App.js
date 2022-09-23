@@ -18,14 +18,17 @@ const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 export default function App() {
     const [estagio, setEstagio] = useState(0)
     function mudarestagio() {
-        console.log("opa")
         setEstagio(estagio + 1)
+    }
+    function sortearPalavra() {
+        const sorteado = Math.floor(Math.random() * palavras.length);
+        console.log(palavras[sorteado])
     }
     return (
         <>
             <div className="superior">
                 <img onClick={mudarestagio} src={arrayImagens[estagio]} alt="forca" />
-                <button>Escolha a palavra</button>
+                <button onClick={sortearPalavra} >Escolha a palavra</button>
             </div>
             <div className="espaço"></div>
             <div className="tecladoeinput">
