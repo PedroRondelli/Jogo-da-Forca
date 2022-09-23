@@ -1,5 +1,71 @@
-.daleo{
-    background-color: red;
-    width: 100vw;
-   
+.superior{
+    height: 60vh;
+    
+    position: relative;
+}
+.superior img{
+    height:100%;
+    
+}
+.superior button{
+    position: absolute;
+    top:10%;
+    right: 10%;
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    border: transparent;
+}
+.espaço{
+    height: 10vh;
+    
+}
+.tecladoeinput{
+    display: flex;
+    flex-direction: column;
+}
+.teclado{
+    
+    width: 53%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    display:flex;
+    justify-content: center;
+}
+.tecladoAtivado{
+    border-radius: 5px;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgb(62, 60, 201);
+    background-color: bisque;
+    color: rgb(62, 60, 201);
+    font-weight: bold;
+    
+}
+.chute{
+    display: flex;
+    width: 60%;
+    margin: 3% auto;
+    justify-content: space-around;
+    align-items: center;
+}
+.chute button {
+    border-radius: 10px;
+    border: 1px solid rgb(62, 60, 201);
+    background-color: bisque;
+    color: rgb(62, 60, 201);
+    font-weight: bold;
+    padding: 10px;
+}
+button:hover{
+    cursor: pointer;
+}
+.desativados{
+    border: 1px solid rgb(88, 86, 86);
+    background-color: rgb(88, 86, 86);
+    color: rgb(54, 54, 54);
+    font-weight: bold;
 }
