@@ -85,9 +85,36 @@ button:hover{
     bottom:0;
     right: 10%;
     display: flex;
+    
 
 }
+.ganhou{
+    position: absolute;
+    bottom:0;
+    right: 10%;
+    display: flex;
+    color:green;
+}
+.perdeu{
+    position: absolute;
+    bottom:0;
+    right: 10%;
+    display: flex;
+    color:red;
+}
 .palavraSorteada span{
+    font-weight: bold;
+    color: black;
+    font-size: larger;
+    margin: 5px;
+}
+.perdeu span{
+    font-weight: bold;
+    color: black;
+    font-size: larger;
+    margin: 5px;
+}
+.ganhou span{
     font-weight: bold;
     color: black;
     font-size: larger;
