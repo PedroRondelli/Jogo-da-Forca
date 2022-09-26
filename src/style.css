@@ -85,6 +85,8 @@ button:hover{
     bottom:0;
     right: 10%;
     display: flex;
+    font-size: 50px;
+    
     
 
 }
@@ -94,6 +96,7 @@ button:hover{
     right: 10%;
     display: flex;
     color:green;
+    font-size: 50px;
 }
 .perdeu{
     position: absolute;
@@ -101,22 +104,23 @@ button:hover{
     right: 10%;
     display: flex;
     color:red;
+    font-size: 50px;
 }
 .palavraSorteada span{
     font-weight: bold;
     color: black;
-    font-size: larger;
+    font-size: 50px;
     margin: 5px;
 }
 .perdeu span{
     font-weight: bold;
     color: black;
-    font-size: larger;
+    font-size: 50px;
     margin: 5px;
 }
 .ganhou span{
     font-weight: bold;
     color: black;
-    font-size: larger;
+    font-size: 50px;
     margin: 5px;
 }

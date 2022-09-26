@@ -15,32 +15,26 @@ const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 let palavraArray = []
 let palavraMomento = ""
 let gabarito = ""
-let classePalavra=""
+let corDaPalavra=""
+
 
 
 
 export default function App() {
     const [estagio, setEstagio] = useState(0)
-    const [nLetras, setNletras] = useState(0)
     const [molde, setMolde] = useState([])
     const [liberado, setLiberado] = useState(false)
-    const [ganhou, setGanhou] = useState(false)
-    const [perdeu, setPerdeu] = useState(false)
-    if(perdeu===false && ganhou===false){
-        classePalavra="palavraSorteada"
-    }else if(perdeu){
-        classePalavra="perdeu"
-        setMolde(palavraArray)
-    }else if(ganhou){
-        classePalavra="ganhou"
-        setMolde(palavraArray)
-
-    }
+    const [terminou,setTerminou]=useState(false)
+    
     function mudarestagio() {
         let teste2 = estagio + 1
         if (teste2 === 6) {
             alert("Perdeu!")
             setLiberado(false)
+            setMolde(palavraArray)
+            setTerminou(true)
+            corDaPalavra="perdeu"
+            
         }
         setEstagio(teste2)
     }
@@ -51,8 +45,9 @@ export default function App() {
         gabarito = palavras[sorteado]
         console.log(palavraArray)
         setMolde(palavraArray.map((e, idx) => <span key={idx} >_</span>))
-        if(estagio>0){
+        if(estagio>0 || terminou ){
             setEstagio(0)
+            setTerminou(false)
         }
 
 
@@ -92,6 +87,10 @@ export default function App() {
             if (arrayVerificacao.length === 0) {
                 alert("Ganhou!")
                 setLiberado(false)
+                setMolde(palavraArray)
+                setTerminou(true)
+                corDaPalavra="ganhou"
+                
             }
 
             setMolde(novoMolde)
@@ -108,30 +107,40 @@ export default function App() {
         if (palavraMomento === gabarito && palavraMomento!=="" ) {
             alert("ganhou!")
             setLiberado(false)
+            setMolde(palavraArray)
+            setTerminou(true)
+            corDaPalavra="ganhou"
+            
         } else {
             alert("perdeu!")
+            
             setLiberado(false)
             setEstagio(6)
+            setMolde(palavraArray)
+            setTerminou(true)
+            corDaPalavra="perdeu"
+            
         }
     }
+    
     return (
         <>
             <div className="superior">
-                <img src={arrayImagens[estagio]} alt="forca" />
-                <button onClick={sortearPalavra} >Escolha a palavra</button>
-                <div className="palavraSorteada">
+                <img data-identifier="game-image" src={arrayImagens[estagio]} alt="forca" />
+                <button data-identifier="choose-word" onClick={sortearPalavra} >Escolha a palavra</button>
+                <div data-identifier="word" className={(terminou===false)? "palavraSorteada":corDaPalavra}>
                     {molde}
                 </div>
             </div>
             <div className="espaço"></div>
             <div className="tecladoeinput">
                 <div className="teclado">
-                    {alfabeto.map((l, idx) => <button disabled={liberado === false ? true : false} key={idx} onClick={(event) => escolherLetra(event, l)} className={liberado === false ? "desativados" : "tecladoAtivado"}>{l.toUpperCase()}</button>)}
+                    {alfabeto.map((l, idx) => <button data-identifier="letter" disabled={liberado === false ? true : false} key={idx} onClick={(event) => escolherLetra(event, l)} className={liberado === false ? "desativados" : "tecladoAtivado"}>{l.toUpperCase()}</button>)}
                 </div>
                 <div className="chute" >
                     <p>Já sei a palavra!</p>
-                    <input disabled={liberado === false ? true : false} onChange={guardarPalavra} ></input>
-                    <button onClick={compararPalavra} >Chutar</button>
+                    <input data-identifier="type-guess" disabled={liberado === false ? true : false} onChange={guardarPalavra} ></input>
+                    <button disabled={liberado === false ? true : false} data-identifier="guess-button" onClick={compararPalavra} >Chutar</button>
                 </div>
             </div>
         </>
