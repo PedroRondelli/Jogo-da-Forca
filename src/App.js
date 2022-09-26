@@ -12,28 +12,60 @@ import forca6 from "./assets/forca6.png"
 import { useState } from "react";
 const arrayImagens = [forca0, forca1, forca2, forca3, forca4, forca5, forca6]
 const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+let palavraArray = []
+let palavraDaVez = ""
 
 
 
 export default function App() {
     const [estagio, setEstagio] = useState(0)
+    const [nLetras, setNletras] = useState(0)
+    const [molde, setMolde] = useState([])
     function mudarestagio() {
         setEstagio(estagio + 1)
     }
     function sortearPalavra() {
         const sorteado = Math.floor(Math.random() * palavras.length);
-        console.log(palavras[sorteado])
+        palavraDaVez = palavras[sorteado]
+        palavraArray = Array.from(palavras[sorteado])
+        console.log(palavraArray)
+        setMolde(palavraArray.map((e, idx) => <span key={idx} >_</span>))
+
+    }
+    /*const letraNormal = e.normalize('NFD').replace(/[\u0300-\u036f]/g, "")*/
+
+    function escolherLetra(letra) {
+        //identificar onde existe a letra na palavraArray
+        const arrayDeComparacao=palavraArray.map((e)=>e.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
+        let indices = [];
+        let elemento = letra;
+        let idx = arrayDeComparacao.indexOf(elemento);
+        while (idx != -1) {
+            indices.push(idx);
+            idx = arrayDeComparacao.indexOf(elemento, idx + 1);
+        }
+        console.log(indices)
+        //substituir no molde onde a letra existe
+        const novoMolde=[...molde]
+        indices.forEach((l)=>{
+            novoMolde[l]= palavraArray[l]
+        })
+        setMolde(novoMolde)
+
     }
     return (
         <>
             <div className="superior">
-                <img onClick={mudarestagio} src={arrayImagens[estagio]} alt="forca" />
+                <img src={arrayImagens[estagio]} alt="forca" />
                 <button onClick={sortearPalavra} >Escolha a palavra</button>
+                <div className="palavraSorteada">
+                    {molde}
+                </div>
             </div>
             <div className="espaço"></div>
             <div className="tecladoeinput">
                 <div className="teclado">
-                    {alfabeto.map(l => <button className="tecladoAtivado">{l.toUpperCase()}</button> )}
+                    {alfabeto.map(l => <button onClick={() => escolherLetra(l)} className="tecladoAtivado">{l.toUpperCase()}</button>)}
                 </div>
                 <div className="chute" >
                     <p>Já sei a palavra!</p>

@@ -69,3 +69,16 @@ button:hover{
     color: rgb(54, 54, 54);
     font-weight: bold;
 }
+.palavraSorteada{
+    position: absolute;
+    bottom:0;
+    right: 10%;
+    display: flex;
+
+}
+.palavraSorteada span{
+    font-weight: bold;
+    color: black;
+    font-size: larger;
+    margin: 5px;
+}
