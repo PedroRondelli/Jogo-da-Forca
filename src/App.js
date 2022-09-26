@@ -13,7 +13,7 @@ import { useState } from "react";
 const arrayImagens = [forca0, forca1, forca2, forca3, forca4, forca5, forca6]
 const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 let palavraArray = []
-let letrasEscolhidas = []
+
 
 
 
@@ -21,10 +21,12 @@ export default function App() {
     const [estagio, setEstagio] = useState(0)
     const [nLetras, setNletras] = useState(0)
     const [molde, setMolde] = useState([])
+    const [liberado,setLiberado]=useState (false)
     function mudarestagio() {
         setEstagio(estagio + 1)
     }
     function sortearPalavra() {
+        setLiberado(true)
         const sorteado = Math.floor(Math.random() * palavras.length);
         palavraArray = Array.from(palavras[sorteado])
         console.log(palavraArray)
@@ -42,8 +44,8 @@ export default function App() {
         let indices = [];
         let elemento = letra;
         let idx = arrayDeComparacao.indexOf(elemento);
-        if (idx != -1) {
-            while (idx != -1) {
+        if (idx !== -1) {
+            while (idx !== -1) {
                 indices.push(idx);
                 idx = arrayDeComparacao.indexOf(elemento, idx + 1);
             }
@@ -71,12 +73,12 @@ export default function App() {
             <div className="espaço"></div>
             <div className="tecladoeinput">
                 <div className="teclado">
-                    {alfabeto.map((l,idx) => <button key={idx} onClick={(event) => escolherLetra(event,l)} className="tecladoAtivado">{l.toUpperCase()}</button>)}
+                    {alfabeto.map((l,idx) => <button disabled={liberado===false? true:false} key={idx} onClick={(event) => escolherLetra(event,l)} className={liberado===false ? "desativados":"tecladoAtivado" }>{l.toUpperCase()}</button>)}
                 </div>
                 <div className="chute" >
                     <p>Já sei a palavra!</p>
                     <input></input>
-                    <button>Chutar</button>
+                    <button >Chutar</button>
                 </div>
             </div>
         </>
